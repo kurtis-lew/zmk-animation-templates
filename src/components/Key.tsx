@@ -73,7 +73,7 @@ export default function Key({
           width={KeySize}
           justifyContent={"center"}
           fontWeight={600}
-          fontSize={60}
+          fontSize={32}
           fontFamily={"sans-serif"}
         />
       </Node>
