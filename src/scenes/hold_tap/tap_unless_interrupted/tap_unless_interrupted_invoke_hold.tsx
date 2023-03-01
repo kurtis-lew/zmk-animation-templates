@@ -13,7 +13,7 @@ export default makeScene2D(function* (view) {
   interrupt.duration.fill("#D9D9D9");
 
   const hold = makeRefs<typeof Key>();
-  view.add(<Key refs={hold} binding={"&ht_tui"} params={"\u21e7 F"} />);
+  view.add(<Key refs={hold} binding={"&ht_tui"} params={"LSHIFT F"} />);
   hold.group.position.x(-125);
   hold.group.position.y(-150);
   hold.duration.fill("#D9D9D9");

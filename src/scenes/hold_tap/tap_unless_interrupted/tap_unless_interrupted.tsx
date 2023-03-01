@@ -8,7 +8,7 @@ import { linear } from "@motion-canvas/core/lib/tweening";
 
 export default makeScene2D(function* (view) {
   const tap = makeRefs<typeof Key>();
-  view.add(<Key refs={tap} binding={"&ht_tui"} params={"\u21e7 F"} />);
+  view.add(<Key refs={tap} binding={"&ht_tui"} params={"LSHIFT F"} />);
   tap.group.position.x(-400);
   tap.group.position.y(-150);
   tap.duration.fill("#D9D9D9");
@@ -19,7 +19,7 @@ export default makeScene2D(function* (view) {
   tap_output.group.position.y(tap_output.group.position.y() + 300);
 
   const hold = makeRefs<typeof Key>();
-  view.add(<Key refs={hold} binding={"&ht_tui"} params={"\u21e7 F"} />);
+  view.add(<Key refs={hold} binding={"&ht_tui"} params={"LSHIFT F"} />);
   hold.group.position.x(400);
   hold.group.position.y(-150);
   hold.duration.fill("#D9D9D9");
