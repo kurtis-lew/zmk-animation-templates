@@ -7,7 +7,7 @@ import { linear } from "@motion-canvas/core/lib/tweening";
 
 export default makeScene2D(function* (view) {
   const interrupt = makeRefs<typeof Key>();
-  view.add(<Key refs={interrupt} binding={"&kp"} params={"J"} />);
+  view.add(<Key refs={interrupt} binding={"&kp"} params={"N5"} />);
   interrupt.group.position.x(125);
   interrupt.group.position.y(-150);
   interrupt.duration.fill("#D9D9D9");
@@ -44,7 +44,7 @@ export default makeScene2D(function* (view) {
       hold.group.rotation(0, 0.03),
       hold.duration.grow(0, 0.15),
       all(
-        delay(0.05, hold_output.output.text("J", 0)),
+        delay(0.05, hold_output.output.text("%", 0)),
         hold_output.shift.fill("#969696", 0.1)
       )
     )
