@@ -1,4 +1,4 @@
-import { Rect, Text, Node } from "@motion-canvas/2d/lib/components";
+import { Rect, Txt, Node } from "@motion-canvas/2d/lib/components";
 import { SignalValue } from "@motion-canvas/core/lib/signals";
 import { makeRef } from "@motion-canvas/core/lib/utils";
 
@@ -55,7 +55,7 @@ export default function Key({
           stroke={"#000000"}
           lineWidth={KeyBorderThickness}
         />
-        <Text
+        <Txt
           ref={makeRef(refs, "binding")}
           text={binding}
           fill={"#000000"}
@@ -66,7 +66,7 @@ export default function Key({
           fontFamily={"sans-serif"}
           y={-65}
         />
-        <Text
+        <Txt
           ref={makeRef(refs, "params")}
           text={params}
           fill={"#000000"}
