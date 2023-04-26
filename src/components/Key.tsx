@@ -21,27 +21,28 @@ export interface KeyProps extends NodeProps {
 export class Key extends Node {
   @initial("")
   @signal()
-  public declare readonly binding: SimpleSignal<string, this>;
+  private declare readonly binding: SimpleSignal<string, this>;
 
   @initial("")
   @signal()
-  public declare readonly params: SimpleSignal<string, this>;
+  private declare readonly params: SimpleSignal<string, this>;
 
   private bindingText: SignalValue<string>;
   private paramsText: SignalValue<string>;
   private keyPosition = createSignal(0);
-  public container = createRef<Node>();
-  public body = createRef<Rect>();
-  public fill = createRef<Rect>();
+
+  private container = createRef<Node>();
+  private body = createRef<Rect>();
+  private fill = createRef<Rect>();
   private bindingTextBox = createRef<Txt>();
   private paramsTextBox = createRef<Txt>();
-  public shadow = createRef<Rect>();
+  private shadow = createRef<Rect>();
 
   public constructor(props?: KeyProps) {
     super({ ...props });
 
     this.bindingText = this.binding();
-    this.paramsText = createSignal(this.params());
+    this.paramsText = this.params();
 
     this.add(
       <Node ref={this.container} y={-KeyTravel}>
@@ -49,6 +50,7 @@ export class Key extends Node {
           layout
           ref={this.body}
           direction={"column-reverse"}
+          justifyContent={"end"}
           width={KeySize}
           height={KeySize}
           y={() => this.keyPosition()}
