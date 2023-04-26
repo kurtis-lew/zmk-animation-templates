@@ -1,5 +1,9 @@
 import { Node, NodeProps, Rect, Txt } from "@motion-canvas/2d/lib/components";
-import { easeInOutCubic, tween } from "@motion-canvas/core/lib/tweening";
+import {
+  tween,
+  easeInOutCubic,
+  linear,
+} from "@motion-canvas/core/lib/tweening";
 import { initial, signal } from "@motion-canvas/2d/lib/decorators";
 import {
   createSignal,
@@ -19,24 +23,24 @@ export interface KeyProps extends NodeProps {
 }
 
 export class Key extends Node {
+  @initial("&kp")
+  @signal()
+  protected declare readonly binding: SimpleSignal<string, this>;
+
   @initial("")
   @signal()
-  private declare readonly binding: SimpleSignal<string, this>;
+  protected declare readonly params: SimpleSignal<string, this>;
 
-  @initial("")
-  @signal()
-  private declare readonly params: SimpleSignal<string, this>;
+  protected bindingText: SignalValue<string>;
+  protected paramsText: SignalValue<string>;
+  protected keyPosition = createSignal(0);
 
-  private bindingText: SignalValue<string>;
-  private paramsText: SignalValue<string>;
-  private keyPosition = createSignal(0);
-
-  private container = createRef<Node>();
-  private body = createRef<Rect>();
-  private fill = createRef<Rect>();
-  private bindingTextBox = createRef<Txt>();
-  private paramsTextBox = createRef<Txt>();
-  private shadow = createRef<Rect>();
+  protected container = createRef<Node>();
+  protected body = createRef<Rect>();
+  protected fill = createRef<Rect>();
+  protected bindingTextBox = createRef<Txt>();
+  protected paramsTextBox = createRef<Txt>();
+  protected shadow = createRef<Rect>();
 
   public constructor(props?: KeyProps) {
     super({ ...props });
