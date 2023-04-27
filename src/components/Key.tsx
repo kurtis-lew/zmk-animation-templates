@@ -10,10 +10,10 @@ import {
 } from "@motion-canvas/core/lib/signals";
 import { createRef } from "@motion-canvas/core/lib/utils";
 
-const KeySize = 200;
-const KeyRadius = 10;
-export const KeyBorderThickness = 10;
-export const KeyTravel = 40;
+const KeySize = 256;
+const KeyRadius = 16;
+export const KeyBorderThickness = 8;
+export const KeyTravel = 64;
 
 export interface KeyProps extends NodeProps {
   binding?: SignalValue<string>;
@@ -72,9 +72,9 @@ export class Key extends Node {
             width={KeySize}
             padding={15}
             fontWeight={600}
-            fontSize={32}
+            fontSize={48}
             fontFamily={"sans-serif"}
-            y={-65}
+            y={-80}
           />
           <Txt
             layout={false}
@@ -84,7 +84,7 @@ export class Key extends Node {
             width={KeySize}
             justifyContent={"center"}
             fontWeight={600}
-            fontSize={32}
+            fontSize={48}
             fontFamily={"sans-serif"}
           />
           <Rect
