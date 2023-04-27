@@ -1,8 +1,6 @@
 import { Node, NodeProps, Rect, Txt } from "@motion-canvas/2d/lib/components";
 import {
-  tween,
   easeInOutCubic,
-  linear,
 } from "@motion-canvas/core/lib/tweening";
 import { initial, signal } from "@motion-canvas/2d/lib/decorators";
 import {
@@ -37,6 +35,7 @@ export class Key extends Node {
 
   protected container = createRef<Node>();
   protected body = createRef<Rect>();
+  protected border = createRef<Rect>();
   protected fill = createRef<Rect>();
   protected bindingTextBox = createRef<Txt>();
   protected paramsTextBox = createRef<Txt>();
@@ -88,6 +87,16 @@ export class Key extends Node {
             fontSize={32}
             fontFamily={"sans-serif"}
           />
+          <Rect
+            layout={false}
+            ref={this.border}
+            width={KeySize}
+            height={KeySize}
+            fill={"#FFFFFF00"}
+            radius={KeyRadius}
+            stroke={"#000000"}
+            lineWidth={KeyBorderThickness}
+          />
         </Rect>
 
         <Rect
@@ -106,16 +115,10 @@ export class Key extends Node {
   }
 
   public *press(duration: number) {
-    yield* tween(duration, (value) => {
-      const currentPos = this.body().position();
-      this.keyPosition(easeInOutCubic(value, currentPos.y, KeyTravel));
-    });
+    yield* this.body().position.y(KeyTravel, duration, easeInOutCubic);
   }
 
   public *release(duration: number) {
-    yield* tween(duration, (value) => {
-      const currentPos = this.body().position();
-      this.keyPosition(easeInOutCubic(value, currentPos.y, 0));
-    });
+    yield* this.body().position.y(0, duration, easeInOutCubic);
   }
 }
