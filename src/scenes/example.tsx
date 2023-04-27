@@ -12,12 +12,12 @@ export default makeScene2D(function* (view) {
     <HoldTap
       ref={holdTapRef}
       params={"LSHIFT F"}
-      tapping_term={1}
+      tapping_term={2}
       position={[300, 0]}
     />
   );
   yield* waitFor(1);
-  yield* all(waitFor(1), tapRef().press(0.25), holdTapRef().press(0.25));
-  yield* holdTapRef().hold(2);
-  yield* all(waitFor(1), tapRef().release(0.25));
+  yield* all(tapRef().press(0.25), holdTapRef().press(0.25), holdTapRef().hold(2.5));
+  yield* holdTapRef().decide();
+  yield* all(waitFor(1), tapRef().release(0.25), holdTapRef().release(0.25));
 });
