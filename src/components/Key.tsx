@@ -1,10 +1,7 @@
 import { Node, NodeProps, Rect, Txt } from "@motion-canvas/2d/lib/components";
-import {
-  easeInOutCubic,
-} from "@motion-canvas/core/lib/tweening";
+import { easeInOutCubic } from "@motion-canvas/core/lib/tweening";
 import { initial, signal } from "@motion-canvas/2d/lib/decorators";
 import {
-  createSignal,
   SignalValue,
   SimpleSignal,
 } from "@motion-canvas/core/lib/signals";
@@ -29,10 +26,6 @@ export class Key extends Node {
   @signal()
   protected declare readonly params: SimpleSignal<string, this>;
 
-  protected bindingText: SignalValue<string>;
-  protected paramsText: SignalValue<string>;
-  protected keyPosition = createSignal(0);
-
   protected container = createRef<Node>();
   protected body = createRef<Rect>();
   protected border = createRef<Rect>();
@@ -44,9 +37,6 @@ export class Key extends Node {
   public constructor(props?: KeyProps) {
     super({ ...props });
 
-    this.bindingText = this.binding();
-    this.paramsText = this.params();
-
     this.add(
       <Node ref={this.container} y={-KeyTravel}>
         <Rect
@@ -56,7 +46,6 @@ export class Key extends Node {
           justifyContent={"end"}
           width={KeySize}
           height={KeySize}
-          y={() => this.keyPosition()}
           fill={"#FFFFFF"}
           radius={KeyRadius}
           stroke={"#000000"}
@@ -67,7 +56,7 @@ export class Key extends Node {
           <Txt
             layout={false}
             ref={this.bindingTextBox}
-            text={this.bindingText}
+            text={this.binding}
             fill={"#000000"}
             width={KeySize}
             padding={15}
@@ -79,7 +68,7 @@ export class Key extends Node {
           <Txt
             layout={false}
             ref={this.paramsTextBox}
-            text={this.paramsText}
+            text={this.params}
             fill={"#000000"}
             width={KeySize}
             justifyContent={"center"}
