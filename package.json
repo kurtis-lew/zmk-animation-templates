@@ -4,11 +4,14 @@
   "version": "0.0.0",
   "scripts": {
     "serve": "vite",
-    "build": "tsc && vite build"
+    "build": "tsc && vite build",
+    "prettier:check": "prettier --check .",
+    "prettier:format": "prettier --write ."
   },
   "dependencies": {
+    "@motion-canvas/2d": "^3.5.1",
     "@motion-canvas/core": "^3.4.0",
-    "@motion-canvas/2d": "^3.5.1"
+    "prettier": "^2.8.8"
   },
   "devDependencies": {
     "@motion-canvas/ui": "^3.5.0",
