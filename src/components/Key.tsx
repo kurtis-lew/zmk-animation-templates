@@ -1,10 +1,7 @@
 import { Node, NodeProps, Rect, Txt } from "@motion-canvas/2d/lib/components";
 import { easeInOutCubic } from "@motion-canvas/core/lib/tweening";
 import { initial, signal } from "@motion-canvas/2d/lib/decorators";
-import {
-  SignalValue,
-  SimpleSignal,
-} from "@motion-canvas/core/lib/signals";
+import { SignalValue, SimpleSignal } from "@motion-canvas/core/lib/signals";
 import { createRef } from "@motion-canvas/core/lib/utils";
 
 const KeySize = 256;
@@ -60,8 +57,8 @@ export class Key extends Node {
             fill={"#000000"}
             width={KeySize}
             padding={15}
-            fontWeight={600}
             fontSize={48}
+            fontWeight={600}
             fontFamily={"sans-serif"}
             y={-80}
           />
@@ -72,8 +69,8 @@ export class Key extends Node {
             fill={"#000000"}
             width={KeySize}
             justifyContent={"center"}
-            fontWeight={600}
             fontSize={48}
+            fontWeight={600}
             fontFamily={"sans-serif"}
           />
           <Rect

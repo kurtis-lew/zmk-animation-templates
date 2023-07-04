@@ -38,11 +38,8 @@ export class HoldTap extends Key {
     );
   }
 
-  public *release(duration: number) {
-    yield* all(
-      this.body().position.y(0, duration, easeInOutCubic),
-      this.fill().grow(0, duration, easeInOutCubic)
-    );
+  public *reset(duration: number) {
+    yield* this.fill().grow(0, duration, easeInOutCubic);
   }
 
   public *interrupt(duration: number) {
