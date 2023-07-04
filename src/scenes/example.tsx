@@ -17,7 +17,11 @@ export default makeScene2D(function* (view) {
     />
   );
   yield* waitFor(1);
-  yield* all(tapRef().press(0.25), holdTapRef().press(0.25), holdTapRef().hold(2.5));
+  yield* all(
+    tapRef().press(0.25),
+    holdTapRef().press(0.25),
+    holdTapRef().hold(2.5)
+  );
   yield* holdTapRef().decide();
   yield* all(waitFor(1), tapRef().release(0.25), holdTapRef().release(0.25));
 });
