@@ -31,10 +31,10 @@ export class Terminal extends Node {
   private readonly modifierContainer = createRef<Rect>();
   private readonly modifiersRowOne = createRef<Rect>();
   private readonly modifiersRowTwo = createRef<Rect>();
-  private readonly modifierSHIFT = createRef<Modifier>();
-  private readonly modifierCTRL = createRef<Modifier>();
-  private readonly modifierALT = createRef<Modifier>();
-  private readonly modifierGUI = createRef<Modifier>();
+  public readonly modifierSHIFT = createRef<Modifier>();
+  public readonly modifierCTRL = createRef<Modifier>();
+  public readonly modifierALT = createRef<Modifier>();
+  public readonly modifierGUI = createRef<Modifier>();
 
   protected lines: Array<Txt> = [];
 
