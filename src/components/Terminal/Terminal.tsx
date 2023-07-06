@@ -7,7 +7,8 @@ import { linear } from "@motion-canvas/core/lib/tweening";
 
 export interface TerminalProps extends NodeProps {
   fontSize?: number;
-  width?: number;
+  width?: any;
+  height?: any;
 }
 
 export class Terminal extends Node {
@@ -15,9 +16,13 @@ export class Terminal extends Node {
   @signal()
   public declare readonly fontSize: SimpleSignal<number, this>;
 
-  @initial(500)
+  @initial(900)
   @signal()
-  public declare readonly width: SimpleSignal<number, this>;
+  public declare readonly width: SimpleSignal<any, this>;
+
+  @initial("100%")
+  @signal()
+  public declare readonly height: SimpleSignal<any, this>;
 
   private readonly terminalContainer = createRef<Rect>();
 
@@ -42,7 +47,7 @@ export class Terminal extends Node {
         layout
         offset={[-1, -1]}
         width={this.width}
-        height={"100%"}
+        height={this.height}
         direction={"column"}
         justifyContent={"end"}
         fill={"rgb(41,45,62)"}
