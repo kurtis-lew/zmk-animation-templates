@@ -48,13 +48,12 @@ export default makeScene2D(function* (view) {
   yield* terminalRef().newLine();
 
   yield* any(holdTapRef().press(0.25), holdTapRef().hold(0.5));
-  yield* waitFor(0.25);
   yield* chain(
     any(
       keyRef().press(0.25),
-      holdTapRef().interrupt(0.25),
-      holdTapRef().decide(),
-      terminalRef().modifierSHIFT().activate(0.25)
+      chain(waitFor(0.25), holdTapRef().interrupt(0.25)),
+      chain(waitFor(0.25), holdTapRef().decide()),
+      chain(waitFor(0.25), terminalRef().modifierSHIFT().activate(0.25))
     ),
     waitFor(0.15),
     keyRef().release(0.25)
