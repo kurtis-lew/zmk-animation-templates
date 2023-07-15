@@ -10,7 +10,6 @@ export default makeScene2D(function* (view) {
   const keyRef = createRef<Key>();
   const holdTapRef = createRef<HoldTap>();
   const terminalRef = createRef<Terminal>();
-  const terminalHoldRef = createRef<Terminal>();
 
   view.add(
     <Rect
