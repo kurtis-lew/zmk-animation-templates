@@ -4,7 +4,7 @@ import motionCanvas from "@motion-canvas/vite-plugin";
 export default defineConfig({
   plugins: [
     motionCanvas({
-      project: ["./src/hold_preferred.ts"],
+      project: ["./src/hold_preferred.ts", "./src/tap_preferred.ts"],
     }),
   ],
 });
