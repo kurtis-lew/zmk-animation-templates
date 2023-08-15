@@ -55,7 +55,8 @@ export default makeScene2D(function* (view) {
         all(
           holdTapRef().interrupt(0.25),
           holdTapRef().decide(),
-          terminalRef().modifierSHIFT().activate(0.25)
+          terminalRef().modifierSHIFT().activate(0.25),
+          terminalRef().type(1, "J", 0.1)
         )
       )
     ),
