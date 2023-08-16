@@ -83,7 +83,7 @@ export class Terminal extends Rect {
         fill={"#BFC7D5"}
         fontFamily={"monospace"}
         fontSize={this.fontSize()}
-        height={this.fontSize() * (4 / 3)}
+        height={this.fontSize()}
       />
     );
   }
