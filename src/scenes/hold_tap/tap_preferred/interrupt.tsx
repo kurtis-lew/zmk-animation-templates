@@ -1,7 +1,7 @@
 import { makeScene2D } from "@motion-canvas/2d/lib/scenes";
-import { Rect } from "@motion-canvas/2d/lib/components";
 import { createRef } from "@motion-canvas/core/lib/utils";
 import { Key } from "../../../components/Key";
+import { Card } from "../../../components/Card";
 import { HoldTap } from "../../../components/HoldTap";
 import { Terminal } from "../../../components/Terminal/Terminal";
 import { waitFor, any, all, chain } from "@motion-canvas/core/lib/flow";
@@ -12,16 +12,7 @@ export default makeScene2D(function* (view) {
   const terminalRef = createRef<Terminal>();
 
   view.add(
-    <Rect
-      width={1360}
-      height={1000}
-      radius={40}
-      fill={"#FFFFFFFF"}
-      clip={true}
-      shadowColor={"000000DD"}
-      shadowOffsetY={10}
-      shadowBlur={20}
-    >
+    <Card width={1360} height={1000}>
       <HoldTap
         ref={holdTapRef}
         binding={"&ht_tp"}
@@ -42,7 +33,7 @@ export default makeScene2D(function* (view) {
         width={800}
         height={1000}
       />
-    </Rect>
+    </Card>
   );
   yield* terminalRef().newLine();
 
