@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "scripts": {
     "serve": "vite",
+    "host": "vite --host",
     "build": "tsc && vite build",
     "prettier:check": "prettier --check .",
     "prettier:format": "prettier --write ."
