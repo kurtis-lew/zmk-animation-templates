@@ -1,6 +1,6 @@
 import { makeScene2D } from "@motion-canvas/2d/lib/scenes";
-import { Rect } from "@motion-canvas/2d/lib/components";
 import { createRef } from "@motion-canvas/core/lib/utils";
+import { Card } from "../../../components/Card";
 import { HoldTap } from "../../../components/HoldTap";
 import { Terminal } from "../../../components/Terminal/Terminal";
 import { waitFor, all, chain } from "@motion-canvas/core/lib/flow";
@@ -12,18 +12,7 @@ export default makeScene2D(function* (view) {
   const terminalHoldRef = createRef<Terminal>();
 
   view.add(
-    <Rect
-      width={660}
-      height={1000}
-      radius={40}
-      position={[-20, 500]}
-      offset={[1, 1]}
-      fill={"#FFFFFFFF"}
-      clip={true}
-      shadowColor={"000000DD"}
-      shadowOffsetY={10}
-      shadowBlur={20}
-    >
+    <Card width={660} height={1000} position={[-20, 0]} offset={[1, 0]}>
       <HoldTap
         ref={tapRef}
         binding={"&ht_tui"}
@@ -37,23 +26,12 @@ export default makeScene2D(function* (view) {
         width={660}
         height={400}
       />
-    </Rect>
+    </Card>
   );
   yield* terminalTapRef().newLine();
 
   view.add(
-    <Rect
-      width={660}
-      height={1000}
-      radius={40}
-      position={[20, 500]}
-      offset={[-1, 1]}
-      fill={"#FFFFFFFF"}
-      clip={true}
-      shadowColor={"000000DD"}
-      shadowOffsetY={10}
-      shadowBlur={20}
-    >
+    <Card width={660} height={1000} position={[20, 0]} offset={[-1, 0]}>
       <HoldTap
         ref={holdRef}
         binding={"&ht_tui"}
@@ -67,7 +45,7 @@ export default makeScene2D(function* (view) {
         width={660}
         height={400}
       />
-    </Rect>
+    </Card>
   );
   yield* terminalHoldRef().newLine();
 
