@@ -43,10 +43,7 @@ export default makeScene2D(function* (view) {
     ),
     waitFor(0.25),
     holdTapRef().release(0.25),
-    all(
-      holdTapRef().decide(),
-      terminalRef().type(1, "fj", 0.1)
-    )
+    all(holdTapRef().decide(), terminalRef().type(1, "fj", 0.1))
   );
   yield* waitFor(0.5);
   yield* all(holdTapRef().reset(0.25), keyRef().release(0.25), waitFor(1));

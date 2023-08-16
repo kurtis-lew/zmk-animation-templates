@@ -1,7 +1,5 @@
 import { Node, NodeProps, Rect, Txt } from "@motion-canvas/2d/lib/components";
-import {
-  easeInOutCubic,
-} from "@motion-canvas/core/lib/tweening";
+import { easeInOutCubic } from "@motion-canvas/core/lib/tweening";
 import { initial, signal } from "@motion-canvas/2d/lib/decorators";
 import {
   SignalValue,
