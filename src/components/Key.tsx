@@ -23,7 +23,6 @@ export class Key extends Node {
   @signal()
   protected declare readonly params: SimpleSignal<string, this>;
 
-  protected container = createRef<Node>();
   protected body = createRef<Rect>();
   protected border = createRef<Rect>();
   protected fill = createRef<Rect>();
@@ -35,76 +34,75 @@ export class Key extends Node {
     super({ ...props });
 
     this.add(
-      <Node ref={this.container} y={-KeyTravel}>
-        <Rect
-          layout
-          ref={this.body}
-          direction={"column-reverse"}
-          justifyContent={"end"}
-          width={KeySize}
-          height={KeySize}
-          fill={"#FFFFFF"}
-          radius={KeyRadius}
-          stroke={"#000000"}
-          lineWidth={KeyBorderThickness}
-          clip
-        >
-          <Rect ref={this.fill} grow={0} fill={"#FFFFFF"} />
-          <Txt
-            layout={false}
-            ref={this.bindingTextBox}
-            text={this.binding}
-            fill={"#000000"}
-            width={KeySize}
-            padding={15}
-            fontSize={48}
-            fontWeight={600}
-            fontFamily={"sans-serif"}
-            y={-80}
-          />
-          <Txt
-            layout={false}
-            ref={this.paramsTextBox}
-            text={this.params}
-            fill={"#000000"}
-            width={KeySize}
-            justifyContent={"center"}
-            fontSize={48}
-            fontWeight={600}
-            fontFamily={"sans-serif"}
-          />
-          <Rect
-            layout={false}
-            ref={this.border}
-            width={KeySize}
-            height={KeySize}
-            fill={"#FFFFFF00"}
-            radius={KeyRadius}
-            stroke={"#000000"}
-            lineWidth={KeyBorderThickness}
-          />
-        </Rect>
-
-        <Rect
-          ref={this.shadow}
-          width={KeySize}
-          height={KeySize}
-          y={KeyTravel}
-          radius={KeyRadius}
+      <Rect
+        layout
+        ref={this.body}
+        direction={"column-reverse"}
+        justifyContent={"end"}
+        width={KeySize}
+        height={KeySize}
+        fill={"#FFFFFF"}
+        radius={KeyRadius}
+        stroke={"#000000"}
+        lineWidth={KeyBorderThickness}
+        y={-KeyTravel}
+        clip
+      >
+        <Rect ref={this.fill} grow={0} fill={"#FFFFFF"} />
+        <Txt
+          layout={false}
+          ref={this.bindingTextBox}
+          text={this.binding}
           fill={"#000000"}
+          width={KeySize}
+          padding={15}
+          fontSize={48}
+          fontWeight={600}
+          fontFamily={"sans-serif"}
+          y={-80}
+        />
+        <Txt
+          layout={false}
+          ref={this.paramsTextBox}
+          text={this.params}
+          fill={"#000000"}
+          width={KeySize}
+          justifyContent={"center"}
+          fontSize={48}
+          fontWeight={600}
+          fontFamily={"sans-serif"}
+        />
+        <Rect
+          layout={false}
+          ref={this.border}
+          width={KeySize}
+          height={KeySize}
+          fill={"#FFFFFF00"}
+          radius={KeyRadius}
           stroke={"#000000"}
           lineWidth={KeyBorderThickness}
-          zIndex={-1}
         />
-      </Node>
+      </Rect>
+    );
+    this.add(
+      <Rect
+        ref={this.shadow}
+        width={KeySize}
+        height={KeySize}
+        radius={KeyRadius}
+        fill={"#000000"}
+        stroke={"#000000"}
+        lineWidth={KeyBorderThickness}
+        zIndex={-1}
+      />
     );
   }
 
   public *press(duration: number) {
-    yield* this.body().position.y(KeyTravel, duration, easeInOutCubic);
+    yield* this.body().position.y(0, duration, easeInOutCubic);
   }
 
   public *release(duration: number) {
-    yield* this.body().position.y(0, duration, easeInOutCubic);
+    yield* this.body().position.y(-KeyTravel, duration, easeInOutCubic);
   }
 }
