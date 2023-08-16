@@ -49,7 +49,7 @@ export class Modifier extends Rect {
 
   public *deactivate(duration: number) {
     yield* this.opacity(1, 0).to(0.3, duration, easeInOutCubic);
-    this.isActive = true;
+    this.isActive = false;
   }
 
   public *toggle(duration: number) {
