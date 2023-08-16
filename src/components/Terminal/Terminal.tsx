@@ -1,30 +1,21 @@
-import { Node, NodeProps, Rect, Txt } from "@motion-canvas/2d/lib/components";
+import { Rect, RectProps, Txt } from "@motion-canvas/2d/lib/components";
 import { Modifier } from "./Modifier";
 import { makeRef, createRef } from "@motion-canvas/core/lib/utils";
 import { initial, signal } from "@motion-canvas/2d/lib/decorators";
-import { SimpleSignal } from "@motion-canvas/core/lib/signals";
+import { SignalValue, SimpleSignal } from "@motion-canvas/core/lib/signals";
+import { Length } from "@motion-canvas/2d/src/partials";
 import { linear } from "@motion-canvas/core/lib/tweening";
 
-export interface TerminalProps extends NodeProps {
+export interface TerminalProps extends RectProps {
   fontSize?: number;
-  width?: any;
-  height?: any;
+  width: SignalValue<Length>;
+  height: SignalValue<Length>;
 }
 
-export class Terminal extends Node {
+export class Terminal extends Rect {
   @initial(48)
   @signal()
   public declare readonly fontSize: SimpleSignal<number, this>;
-
-  @initial(900)
-  @signal()
-  public declare readonly width: SimpleSignal<any, this>;
-
-  @initial("100%")
-  @signal()
-  public declare readonly height: SimpleSignal<any, this>;
-
-  private readonly terminalContainer = createRef<Rect>();
 
   private readonly outputContainer = createRef<Rect>();
 
@@ -39,48 +30,45 @@ export class Terminal extends Node {
   protected lines: Array<Txt> = [];
 
   public constructor(props?: TerminalProps) {
-    super({ ...props });
+    super({
+      layout: true,
+      offset: [-1, -1],
+      direction: "column",
+      justifyContent: "end",
+      fill: "rgb(41,45,62)",
+      padding: 32,
+      ...props,
+    });
 
     this.add(
       <Rect
-        ref={this.terminalContainer}
+        ref={this.outputContainer}
         layout
-        offset={[-1, -1]}
-        width={this.width}
-        height={this.height}
-        direction={"column"}
-        justifyContent={"end"}
-        fill={"rgb(41,45,62)"}
+        grow={1}
         padding={32}
-      >
+        paddingTop={120}
+        direction={"column"}
+      />
+    );
+    this.add(
+      <Rect ref={this.modifierContainer} layout direction={"column"}>
         <Rect
-          ref={this.outputContainer}
+          ref={this.modifiersRowOne}
           layout
-          grow={1}
-          padding={32}
-          paddingTop={120}
-          direction={"column"}
-        />
-
-        <Rect ref={this.modifierContainer} layout direction={"column"}>
-          <Rect
-            ref={this.modifiersRowOne}
-            layout
-            width={"100%"}
-            direction={"row"}
-          >
-            <Modifier ref={this.modifierSHIFT} modifier={"SHIFT"} />
-            <Modifier ref={this.modifierALT} modifier={"ALT"} />
-          </Rect>
-          <Rect
-            ref={this.modifiersRowTwo}
-            layout
-            width={"100%"}
-            direction={"row"}
-          >
-            <Modifier ref={this.modifierCTRL} modifier={"CTRL"} />
-            <Modifier ref={this.modifierGUI} modifier={"GUI"} />
-          </Rect>
+          width={"100%"}
+          direction={"row"}
+        >
+          <Modifier ref={this.modifierSHIFT} modifier={"SHIFT"} />
+          <Modifier ref={this.modifierALT} modifier={"ALT"} />
+        </Rect>
+        <Rect
+          ref={this.modifiersRowTwo}
+          layout
+          width={"100%"}
+          direction={"row"}
+        >
+          <Modifier ref={this.modifierCTRL} modifier={"CTRL"} />
+          <Modifier ref={this.modifierGUI} modifier={"GUI"} />
         </Rect>
       </Rect>
     );
@@ -88,7 +76,7 @@ export class Terminal extends Node {
 
   public *newLine() {
     const textRef = makeRef(this.lines, this.lines.length);
-    const output = this.children()[0].children()[0];
+    const output = this.children()[0];
     output.add(
       <Txt
         ref={textRef}
