@@ -25,7 +25,6 @@ export class Key extends Node {
 
   protected body = createRef<Rect>();
   protected border = createRef<Rect>();
-  protected fill = createRef<Rect>();
   protected bindingTextBox = createRef<Txt>();
   protected paramsTextBox = createRef<Txt>();
   protected shadow = createRef<Rect>();
@@ -48,7 +47,6 @@ export class Key extends Node {
         y={-KeyTravel}
         clip
       >
-        <Rect ref={this.fill} grow={0} fill={"#FFFFFF"} />
         <Txt
           layout={false}
           ref={this.bindingTextBox}
