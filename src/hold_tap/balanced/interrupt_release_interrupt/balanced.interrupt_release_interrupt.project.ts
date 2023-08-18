@@ -1,6 +1,6 @@
 import { makeProject } from "@motion-canvas/core";
 
-import scene from "./scenes/interrupt_release_interrupt?scene";
+import scene from "./scenes/scene?scene";
 
 export default makeProject({
   scenes: [scene],
